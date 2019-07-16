@@ -36,7 +36,15 @@ http://ricostacruz.com/cheatsheets/umdjs.html
     return a;
   }
 
-  var jsonLogic = {};
+
+  function JSONLogic() {
+    if(!(this instanceof JSONLogic)) {
+      return new JSONLogic();
+    }
+  }
+
+  var jsonLogic = JSONLogic.prototype;
+
   var operations = {
     "==": function(a, b) {
       return a == b;
@@ -460,5 +468,11 @@ http://ricostacruz.com/cheatsheets/umdjs.html
     return false;
   };
 
-  return jsonLogic;
+
+  var retval = new JSONLogic();
+
+
+  retval.JSONLogic = JSONLogic;
+
+  return retval;
 }));
